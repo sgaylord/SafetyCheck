@@ -1,0 +1,83 @@
+<!-- views/contacts.ejs -->
+
+<!doctype html>
+<html>
+<head>
+    <% include includes/head %>
+</head>
+
+<body class="container">
+
+    <header>
+        <% include includes/header %>
+    </header>
+
+<div class="container">
+
+    <div class="page-header text-center">
+        <h1><span class="fa fa-anchor"></span> Contacts Page</h1>
+        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+    </div>
+
+    <div class="row">
+
+        <!-- LOCAL INFORMATION -->
+        <div class="col-sm-6">
+            <div class="well">
+                <h3><span class="fa fa-user"></span> Local</h3>
+
+                    <p>
+                    <% if (contact) { %>
+                        <strong>id</strong>: <%= contact._id %><br>
+                        <strong>First Name</strong>: <%= contact.FirstName %><br>
+                        <strong>Last Name</strong>: <%= contact.LastName %>
+                        <strong>Phone Number</strong>: <%= contact.PhoneNumber %>
+                    <% } %>
+                    </p>
+
+            </div>
+        </div>
+
+    </div>
+
+
+<div class="row" ng-hide="contact._id">
+  <div class="col-md-6">
+      <h2>Create new contact</h2>
+  </div>
+</div>
+
+<form action="\contacts" method="post" name="contact">
+
+<div class="container">
+  <div>
+    <p>
+      <label>First Name (required)</label> 
+      <input id="contact.firstName" class="form-control" type="text" ng-model="contact.firstName" required> 
+    </p>
+    <p>
+      <label>Last Name (required)</label> 
+      <input id="contact.lastName" class="form-control" type="text" ng-model="contact.lastName" required> 
+    </p>
+    <p>
+      <label>Phone</label> 
+      <input id="contact.phone" class="form-control" type="text" ng-model="contact.phone"> 
+    </p>
+
+    <p>
+      <button type="submit" style="margin-top:20px" class="btn btn-default" ng-click="saveContact(contact)">Save</button>
+      <button style="margin-top:20px" class="btn btn-default" ng-click="back()">Back</button>
+    </p>
+  </div>
+</div>
+</form>
+
+
+</div>
+
+    <footer>
+        <% include includes/footer %>
+    </footer>
+
+</body>
+</html>
